@@ -1,0 +1,15 @@
+<h1> Title </h1>
+<p> This is paragraph and it has <b><blink> formatting </blink> with bolds and </b> blinks</p>
+<p>We have ordered lists</p>
+<ol>
+	<li>Item 1</li>
+	<li>Item 2</li>
+</ol>
+<br></br>
+<hr></hr>
+<br></br>
+<p>We have unordered lists</p>
+<ul>
+	<li>Item 1</li>
+	<li>Item 2</li>
+</ul>

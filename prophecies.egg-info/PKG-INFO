@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: prophecies
+Version: 0.0.1
+Summary: Experimental HTML framework for TUI's, using a curses backend
+Home-page: https://github.com/pedroallenrevez/prophecies
+Author: Pedro Allen Revez
+Author-email: pedroallenrevez@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.7, <4
+
+UNKNOWN
+

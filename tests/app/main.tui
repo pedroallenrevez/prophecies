@@ -1,0 +1,5 @@
+<colored></colored>
+
+<script>
+from .components.colored import colored
+</script>

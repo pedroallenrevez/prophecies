@@ -1,0 +1,8 @@
+<p>TEST</p>
+
+<script>
+from prophecies.parser import Paragraph 
+
+class colored(Paragraph):
+    color: str = "blue"
+</script>

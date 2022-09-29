@@ -1,0 +1,40 @@
+[ ] parser
+    [ ] error reporting
+        [x] line pos
+        [ ] rule name
+        [ ] expected symbol
+    [ ] tags
+        [ ] no preprocessing text matrix
+        [ ] txt stuff
+        [x] basic component
+    [ ] templating
+        [ ] language basics
+        [ ] run DOM with context
+    [ ] components templating
+        [x] basic templating
+        [x] typed slots - pydantic
+        [x] propagating attributes?
+    [x] parsy example
+        [x] pydantic data structure for token
+        [x] circular dependency example
+        [x] check them outputs
+[ ] compiler/engine
+    [ ] txt matrix stack
+    [ ] rendering lifecycle
+    [ ] scripting
+        [ ] generating python files
+        [ ] import component register etc
+    1. generate python files
+    2. Symbol registering
+    (Use component, repeat loop)
+    3. jinja templating of component tmpl with context (from upper stack, and component parser tokens (typed tags))
+    4. Parse DOM
+    5. Run DOM (.render)
+    6. Update screen state
+    7. Render screen state
+[ ] separate parsers into their pkg modules (w tests)
+    [ ] html
+    [ ] liquid template
+    [ ] markdown
+    [ ] test packages
+[x] tests

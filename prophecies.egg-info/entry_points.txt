@@ -1,0 +1,2 @@
+[console_scripts]
+prophecies = prophecies.cli:make_cli

@@ -1,0 +1,4 @@
+click
+pydantic
+parsy
+pyfiglet
