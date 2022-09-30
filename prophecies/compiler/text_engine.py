@@ -3,7 +3,6 @@ import operator as op
 from functools import reduce
 
 import pyfiglet
-from pyfiglet import Figlet
 
 
 class TextEngine:
@@ -47,7 +46,7 @@ class TextEngine:
         self._flags.append(curses.A_UNDERLINE)
 
     def hseparator(self, scrn, cursor):
-        rows, cols = scrn.getmaxyx()
+        _, cols = scrn.getmaxyx()
         scrn.addstr(cursor.cursor_x, cursor.cursor_y, "-" * cols, curses.A_BOLD)
         cursor.next_line()
 

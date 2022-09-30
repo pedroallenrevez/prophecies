@@ -1,3 +1,6 @@
+from prophecies.parser.tokens import AstTokens
+
+
 class Store(dict):
     def set_compiler(self, compiler):
         self["__compiler"] = compiler

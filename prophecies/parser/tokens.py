@@ -1,7 +1,5 @@
-from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Dict, List, Optional, Tuple, Union
 
-from parsy import generate, peek, regex, seq, string, string_from
 from pydantic import BaseModel
 
 import prophecies
@@ -74,11 +72,9 @@ class Paragraph(TagNode):
 
     def curses(self, scrn):
         comp = prophecies.STORE.compiler
-        text_engine = comp.text_engine
         cursor = comp.cursor
         for c in self.content:
             c.curses(scrn)
-            # text_engine.flush(scrn, cursor)
         cursor.next_line()
 
 
@@ -103,7 +99,6 @@ class EmToken(TagNode):
     def curses(self, scrn):
         comp = prophecies.STORE.compiler
         text_engine = comp.text_engine
-        cursor = comp.cursor
         for b in self.content:
             text_engine.highlight()
             b.curses(scrn)
@@ -113,7 +108,6 @@ class BoldToken(TagNode):
     def curses(self, scrn):
         comp = prophecies.STORE.compiler
         text_engine = comp.text_engine
-        cursor = comp.cursor
         for b in self.content:
             text_engine.bold()
             b.curses(scrn)
@@ -123,7 +117,6 @@ class BlinkToken(TagNode):
     def curses(self, scrn):
         comp = prophecies.STORE.compiler
         text_engine = comp.text_engine
-        cursor = comp.cursor
         for b in self.content:
             text_engine.blink()
             b.curses(scrn)
@@ -132,7 +125,6 @@ class BlinkToken(TagNode):
 class BreakToken(TagNode):
     def curses(self, scrn):
         comp = prophecies.STORE.compiler
-        text_engine = comp.text_engine
         cursor = comp.cursor
         cursor.next_line()
         for b in self.content:
@@ -153,7 +145,6 @@ class ItalicToken(TagNode):
     def curses(self, scrn):
         comp = prophecies.STORE.compiler
         text_engine = comp.text_engine
-        cursor = comp.cursor
         for b in self.content:
             text_engine.italic()
             b.curses(scrn)
@@ -163,7 +154,6 @@ class UnderlineToken(TagNode):
     def curses(self, scrn):
         comp = prophecies.STORE.compiler
         text_engine = comp.text_engine
-        cursor = comp.cursor
         for b in self.content:
             text_engine.underline()
             b.curses(scrn)
@@ -173,7 +163,6 @@ class StrikeToken(TagNode):
     def curses(self, scrn):
         comp = prophecies.STORE.compiler
         text_engine = comp.text_engine
-        cursor = comp.cursor
         for b in self.content:
             text_engine.strike()
             b.curses(scrn)
@@ -190,7 +179,6 @@ class HeadingToken(TagNode):
     def curses(self, scrn):
         comp = prophecies.STORE.compiler
         text_engine = comp.text_engine
-        cursor = comp.cursor
         text_engine.heading(self._level)
         for b in self.content:
             b.curses(scrn)
@@ -200,7 +188,6 @@ class OlToken(TagNode):
     def curses(self, scrn):
         comp = prophecies.STORE.compiler
         text_engine = comp.text_engine
-        cursor = comp.cursor
         for i, b in enumerate(self.content):
             text_engine.text(f"{i}. ")
             b.curses(scrn)
@@ -210,7 +197,6 @@ class UlToken(TagNode):
     def curses(self, scrn):
         comp = prophecies.STORE.compiler
         text_engine = comp.text_engine
-        cursor = comp.cursor
         for b in self.content:
             text_engine.text("*) ")
             b.curses(scrn)
@@ -219,7 +205,6 @@ class UlToken(TagNode):
 class LiToken(TagNode):
     def curses(self, scrn):
         comp = prophecies.STORE.compiler
-        text_engine = comp.text_engine
         cursor = comp.cursor
         for b in self.content:
             b.curses(scrn)

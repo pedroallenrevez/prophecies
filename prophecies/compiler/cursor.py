@@ -19,7 +19,7 @@ class Cursor:
 
     def forward(self, scrn, steps):
         # TODO - WINDOW FORWARD
-        rows, cols = scrn.getmaxyx()
+        _, cols = scrn.getmaxyx()
 
         step = self.cursor_y + steps
         if step > cols:

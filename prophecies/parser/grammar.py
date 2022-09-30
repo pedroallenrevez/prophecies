@@ -1,10 +1,7 @@
 import operator as op
-from dataclasses import dataclass
 from functools import reduce
-from typing import Any, Dict, List, Optional, Tuple, Union
 
-from parsy import generate, peek, regex, seq, string, string_from
-from pydantic import BaseModel
+from parsy import generate, regex, string
 
 from prophecies.parser.tokens import TOKENS
 
@@ -61,11 +58,9 @@ def tagger(char):
     @generate
     def tag():
         # 1. Parse tag
-        otag_begin_pos, attrs, otag_end_pos = (
-            yield OPEN_TAG(char).desc(f"<{char}>").mark()
-        )
-        ctag_begin_pos, content, ctag_end_pos = yield values.many().mark()
-        etag_begin_pos, _, etag_end_pos = yield CLOS_TAG(char).desc(f"</{char}>").mark()
+        otag_begin_pos, attrs, _ = yield OPEN_TAG(char).desc(f"<{char}>").mark()
+        content = yield values.many()
+        _, _, etag_end_pos = yield CLOS_TAG(char).desc(f"</{char}>").mark()
 
         # 2. Produce Tokens
         token = TOKENS[char](
