@@ -1,7 +1,10 @@
 import curses
+
 from prophecies.parser import parse
-from .text_engine import TextEngine
+
 from .cursor import Cursor
+from .text_engine import TextEngine
+
 
 class Compiler:
     def __init__(self):
@@ -17,7 +20,6 @@ class Compiler:
     def __call__(self, txt):
         token = parse(txt)
         curses.wrapper(main, token)
-
 
 
 def main(scrn, token):

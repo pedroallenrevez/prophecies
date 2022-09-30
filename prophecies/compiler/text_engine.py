@@ -1,6 +1,5 @@
 import curses
 import operator as op
-
 from functools import reduce
 
 import pyfiglet
@@ -10,19 +9,19 @@ from pyfiglet import Figlet
 class TextEngine:
     def __init__(self):
         self._flags = []
-        self._text = ''
+        self._text = ""
         self._heading = False
         self._heading_codex = dict()
-        self._heading_codex[1]='banner4'
-        self._heading_codex[2]='jazmine'
-        self._heading_codex[3]='utopia'
-        self._heading_codex[4]='marquee'
-        self._heading_codex[5]='doom'
-        self._heading_codex[6]='contessa'
+        self._heading_codex[1] = "banner4"
+        self._heading_codex[2] = "jazmine"
+        self._heading_codex[3] = "utopia"
+        self._heading_codex[4] = "marquee"
+        self._heading_codex[5] = "doom"
+        self._heading_codex[6] = "contessa"
 
     def reset(self):
         self._flags = []
-        self._text = ''
+        self._text = ""
         self._heading = False
 
     def text(self, text):
@@ -49,12 +48,7 @@ class TextEngine:
 
     def hseparator(self, scrn, cursor):
         rows, cols = scrn.getmaxyx()
-        scrn.addstr(
-                cursor.cursor_x,
-                cursor.cursor_y,
-                '-'*cols,
-                curses.A_BOLD
-        )
+        scrn.addstr(cursor.cursor_x, cursor.cursor_y, "-" * cols, curses.A_BOLD)
         cursor.next_line()
 
     def heading(self, level):
@@ -63,8 +57,7 @@ class TextEngine:
     def flush(self, scrn, cursor):
         if self._heading:
             self._text = pyfiglet.figlet_format(
-                    self._text,
-                    font=self._heading_codex[self._heading]
+                self._text, font=self._heading_codex[self._heading]
             )
 
         if len(self._flags) > 0:
@@ -72,7 +65,7 @@ class TextEngine:
         else:
             flags = []
 
-        toks = self._text.split('\n')
+        toks = self._text.split("\n")
         for t in toks:
             args = [cursor.cursor_x, cursor.cursor_y, t]
             if flags:
@@ -80,8 +73,6 @@ class TextEngine:
             scrn.addstr(*tuple(args))
             # TODO - doesnt take into account wrapping around cursor dimensions
             cursor.forward(scrn, len(t))
-            if len(toks)>1:
+            if len(toks) > 1:
                 cursor.next_line()
         self.reset()
-
-

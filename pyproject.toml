@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "prophecies"
+version = "0.1.0"
+homepage = "https://github.com/pedroallenrevez/prophecies"
+description = "Experimental HTML to curses compiler, inspired by modern web-dev frameworks."
+authors = ["Pedro Revez <pedroallenrevez@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+prophecies = "prophecies.cli:make_cli"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+parsy = "^1.4.0"
+pydantic = "^1.9.0"
+click = "^8.0.3"
+pyfiglet = "^0.8.post1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+black = "^22.3.0"
+isort = "^5.10.1"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
