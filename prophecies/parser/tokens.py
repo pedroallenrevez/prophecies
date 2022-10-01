@@ -8,13 +8,31 @@ import prophecies
 class TagNode(BaseModel):
     content: List[Union["TagNode", str]]
     name: str
-    attrs: Dict[str, Union[str, bool]]
+    attrs: Dict[str, Union[bool, str]]
     begin_pos: Tuple[int, int]
     end_pos: Tuple[int, int]
     _tmpl: Optional[str] = None
 
     class Config:
         underscore_attrs_are_private = True
+
+    def _repr(self, level=0):
+        leveled = lambda s: ("  "*level) + s
+        base = leveled(f"{self.__class__.__name__}(\n")
+        base += leveled(str(self.attrs) + '\n')
+        for c in self.content:
+            if isinstance(c, str):
+                base += leveled(leveled(c + '\n'))
+            else:
+                base += c._repr(level=level+1) + '\n'
+        base += leveled(")")
+        return base
+
+    def __repr__(self) -> str:
+        return str(self)
+
+    def __str__(self):
+        return self._repr()
 
     def __init__(self, content, name, attrs, **kwargs):
         fields = self.possible_attrs()
