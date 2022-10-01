@@ -33,25 +33,6 @@ def compile(filename):
     else:
         print("Provide a file with .tui extension")
 
-
-# @click.command()
-# def test():
-#    for i, p in enumerate(Path('tests/pages').glob('*')):
-#        with open(p, 'r') as fp:
-#            try:
-#                init_engine()
-#                lines = fp.read()
-#                res = parse(lines)
-#                flag = "OK"
-#                STORE.compiler(lines)
-#            except Exception as e:
-#                destroy_engine()
-#                flag = "ERROR"
-#            total_chars = 88 - len(str(p)) - len(str(i)) - 2
-#            print(f"={i}={p}{'='*total_chars} " + flag)
-#            fp.close()
-
-
 @click.group()
 def default():
     pass
@@ -59,6 +40,5 @@ def default():
 
 def make_cli():
     default.add_command(compile)
-    # default.add_command(test)
     default.add_command(parse)
     default()
